@@ -99,4 +99,7 @@ pub enum InstanceType {
 
     #[strum(serialize = "SA2.2XLARGE32")]
     SA22Xlarge32, //8C32G
+
+    #[strum(serialize = "SA9.LARGE16")]
+    SA9Large16, // 4C16G
 }
