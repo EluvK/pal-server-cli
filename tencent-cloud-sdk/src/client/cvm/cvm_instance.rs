@@ -105,10 +105,7 @@ impl CVMInstanceBuilder {
             version: "2017-03-12".into(),
         }
     }
-    pub async fn describe_instance(
-        &self,
-        region: &Region,
-    ) -> anyhow::Result<DescribeInstancesResponse> {
+    pub async fn describe_instance(&self, region: &Region) -> anyhow::Result<DescribeInstancesResponse> {
         let resp = self
             .client
             .post(&self.service_name, &self.version)
@@ -120,10 +117,7 @@ impl CVMInstanceBuilder {
 
         match resp.status() {
             StatusCode::OK => Ok(resp.json().await?),
-            rest => Err(anyhow::anyhow!(
-                "err get code {rest}, msg {}",
-                resp.text().await?
-            )),
+            rest => Err(anyhow::anyhow!("err get code {rest}, msg {}", resp.text().await?)),
         }
     }
 
@@ -161,14 +155,15 @@ impl CVMInstanceBuilder {
 
         match resp.status() {
             StatusCode::OK => {
+                // let body = resp.text().await?;
+                // debug!("body: {body:?}");
+                // let body: InquiryPriceRunInstancesResponse = serde_json::from_str(&body)?;
+                // debug!("body: {body:?}");
                 let body: InquiryPriceRunInstancesResponse = resp.json().await?;
                 debug!("body: {body:?}");
                 Ok(body.response.price)
             }
-            rest => Err(anyhow::anyhow!(
-                "err get code {rest}, msg {}",
-                resp.text().await?
-            )),
+            rest => Err(anyhow::anyhow!("err get code {rest}, msg {}", resp.text().await?)),
         }
     }
 
@@ -178,7 +173,7 @@ impl CVMInstanceBuilder {
         region: &Region,
         zone: &str,
         instance_type: &InstanceType,
-        key_ids: Vec<String>,
+        key_ids: &[String],
         security_group: Vec<String>,
     ) -> anyhow::Result<String> {
         let mut body = json!({
@@ -227,18 +222,11 @@ impl CVMInstanceBuilder {
                     .nth(0)
                     .ok_or(anyhow::anyhow!("panic!! response missing id ???"))
             }
-            rest => Err(anyhow::anyhow!(
-                "err get code {rest}, msg {}",
-                resp.text().await?
-            )),
+            rest => Err(anyhow::anyhow!("err get code {rest}, msg {}", resp.text().await?)),
         }
     }
 
-    pub async fn terminate_instance(
-        &self,
-        region: &Region,
-        instance_id: &str,
-    ) -> anyhow::Result<()> {
+    pub async fn terminate_instance(&self, region: &Region, instance_id: &str) -> anyhow::Result<()> {
         let resp = self
             .client
             .post(&self.service_name, &self.version)
@@ -256,10 +244,7 @@ impl CVMInstanceBuilder {
                 debug!("body: {body:?}");
                 Ok(())
             }
-            rest => Err(anyhow::anyhow!(
-                "err get code {rest}, msg {}",
-                resp.text().await?
-            )),
+            rest => Err(anyhow::anyhow!("err get code {rest}, msg {}", resp.text().await?)),
         }
     }
 }

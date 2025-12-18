@@ -8,6 +8,7 @@ authors.workspace = true
 anyhow.workspace = true
 async-trait.workspace = true
 clap.workspace = true
+itertools.workspace = true
 opendal = { version = "0.55.0", default-features = false, features = [
     "services-sftp",
     "services-fs",
@@ -15,6 +16,10 @@ opendal = { version = "0.55.0", default-features = false, features = [
 ] }
 serde_json.workspace = true
 serde.workspace = true
+ssh2 = "0.9.4"
 tencent-cloud-sdk = { path = "../tencent-cloud-sdk" }
 tokio.workspace = true
 toml.workspace = true
+tracing = "0.1.40"
+tracing-appender = "0.2.3"
+tracing-subscriber = { version = "0.3.18", features = ["local-time"] }

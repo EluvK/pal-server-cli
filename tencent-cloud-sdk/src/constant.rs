@@ -66,6 +66,8 @@ pub enum Region {
 pub enum InstanceType {
     #[strum(serialize = "SA2.MEDIUM2")]
     SA2Medium2, // 2C2G // for test case
+    #[strum(serialize = "S5.MEDIUM2")]
+    S5Medium2, // 2C2G
 
     #[strum(serialize = "SA2.MEDIUM8")]
     SA2Medium8, // 2C8G
@@ -96,6 +98,8 @@ pub enum InstanceType {
     MA2Large32, // 4C32
     #[strum(serialize = "M5.LARGE32")]
     M5Large32, // 4C32
+    #[strum(serialize = "MA5.LARGE32")]
+    MA5Large32, // 4C32
 
     #[strum(serialize = "SA2.2XLARGE32")]
     SA22Xlarge32, //8C32G

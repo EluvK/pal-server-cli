@@ -1,0 +1,13 @@
+server_status_filepath = "./server_status.toml"
+
+[tcc_config]
+ak = "your_ak"
+sk = "your_sk"
+
+[local_storage]
+local_dir = "./saves/"
+remote_dir = "/home/ubuntu/psm"
+
+[local_storage.ssh]
+prikey = "~/.ssh/id_ed25519"
+user = "ubuntu"
