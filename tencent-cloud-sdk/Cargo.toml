@@ -1,0 +1,23 @@
+[package]
+name = "tencent-cloud-sdk"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+async-trait.workspace = true
+chrono.workspace = true
+hex = "0.4"
+http = "1.4.0"
+percent-encoding = "2.3.2"
+reqwest = { version = "0.12.26", features = ["json"] }
+reqwest-middleware = { version = "0.4.2", features = ["json"] }
+ring = "0.17.14"
+serde_json.workspace = true
+serde.workspace = true
+sha2 = "0.10.9"
+strum = { version = "0.27.2", features = ["derive"] }
+# task-local-extensions = "0.1"
+time = { version = "0.3", features = ["macros", "serde-well-known"] }
+tracing = "0.1.41"
